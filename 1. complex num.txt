@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+// Class to represent a Complex Number
+class Complex {
+private:
+    double real, imag;  // real and imaginary parts of the complex number
+
+public:
+    // Constructor to initialize complex number
+    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) {}
+
+    // Overload the + operator to add two complex numbers
+    Complex operator + (const Complex& other) {
+        return Complex(real + other.real, imag + other.imag);
+    }
+
+    // Overload the * operator to multiply two complex numbers
+    Complex operator * (const Complex& other) {
+        return Complex(real * other.real - imag * other.imag, 
+                       real * other.imag + imag * other.real);
+    }
+
+    // Overload the << operator to print complex number
+    friend ostream& operator << (ostream& out, const Complex& c) {
+        out << c.real;
+        if (c.imag >= 0) out << " + " << c.imag << "i";
+        else out << " - " << -c.imag << "i";
+        return out;
+    }
+
+    // Overload the >> operator to input complex number
+    friend istream& operator >> (istream& in, Complex& c) {
+        cout << "Enter real part: ";
+        in >> c.real;
+        cout << "Enter imaginary part: ";
+        in >> c.imag;
+        return in;
+    }
+};
+
+int main() {
+    Complex c1, c2, sum, product;
+
+    // Reading two complex numbers from user
+    cout << "Enter first complex number:" << endl;
+    cin >> c1;
+
+    cout << "Enter second complex number:" << endl;
+    cin >> c2;
+
+    // Performing addition and multiplication
+    sum = c1 + c2;
+    product = c1 * c2;
+
+    // Displaying results
+    cout << "Sum of the complex numbers: " << sum << endl;
+    cout << "Product of the complex numbers: " << product << endl;
+
+    return 0;
+}
