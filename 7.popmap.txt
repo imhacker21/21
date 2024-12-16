@@ -1,0 +1,25 @@
+#include<iostream>
+#include<map>
+#include<string>
+using namespace std;
+int main()
+{
+	typedef map<string,int>maptype;
+	maptype popmap;
+	popmap.insert(pair<string, int>("maha", 100));
+	popmap.insert(pair<string,int>("mp", 200));
+	popmap.insert(pair<string,int>("up", 300));
+	maptype::iterator iter;
+	
+	cout<<"----population of state in India----";
+	cout<<"size of popmap"<<popmap.size()<<"\n";
+	string state_name;
+	cout<<"\n Enter the name of state: ";
+	cin>>state_name;
+	iter=popmap.find(state_name);
+	if(iter!=popmap.end())
+	cout<<state_name<<"'s population is "<<iter->second;
+	 else
+	 cout<<"Key is not populationmap"<<"\n";
+	 popmap.clear();
+}
